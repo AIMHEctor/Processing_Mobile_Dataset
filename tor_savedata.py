@@ -26,23 +26,6 @@ NUM = "num_cells"
 ACK = "ack"
 WANG = "wang"
 
-
-def bad_targets(exc_dupl=True, exc_unknown=True, exc_similar=False, exc_empty=True, exc_alm_empty=False):
-    exclude = []
-    if exc_dupl:
-        for dupls in targets.duplicates:
-            exclude += dupls[1:]
-    if exc_unknown:
-        exclude += targets.unknown_error
-    if exc_similar:
-        exclude += targets.similar
-    if exc_empty:
-        exclude += targets.empty
-    if exc_alm_empty:
-        exclude += targets.almost_empty
-    return exclude
-
-
 def expand2(dir, num_cells):
     expanded = []
     for _ in range(0, num_cells):
@@ -75,7 +58,7 @@ def to_wang(trace, maxlen):
 
 def parse_target(filename):
     #return filename.split("_")[1:-1][0]
-    return filename.split("-")[0]
+    return filename.split("_")[0]
 
 
 def smart_shuffle(lists, list=False):
@@ -97,7 +80,7 @@ def save_data(txtname, savepath, maxlen, traces, openw, towang=True, h5=False): 
     # Returns
         Tuple of Numpy arrays: `(x_train, y_train), (x_test, y_test)`.
     """
-    features = ["direction", "num_cells"]
+    #features = ["direction", "num_cells"]
     #if towang:
     #    nb_features = 1
     #else:
@@ -128,7 +111,7 @@ def save_data(txtname, savepath, maxlen, traces, openw, towang=True, h5=False): 
                 else:
                     num_labels[label] = count + 1
         #try:
-        df = pd.read_csv(f, nrows=10000, sep="\t", dtype=None, usecols=[0,1], header=None)
+        df = pd.read_csv(f, nrows=10000, sep="\t", dtype=None, usecols=[0,4], header=None)
         #except:
         #    continue
         if df.empty:
