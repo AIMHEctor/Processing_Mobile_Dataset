@@ -111,7 +111,7 @@ def save_data(txtname, savepath, maxlen, traces, openw, towang=True, h5=False): 
                 else:
                     num_labels[label] = count + 1
         #try:
-        df = pd.read_csv(f, nrows=10000, sep="\t", dtype=None, usecols=[0,4], header=None)
+        df = pd.read_csv(f, nrows=10000, sep="\t", dtype=None, usecols=[0,3], header=None)
         #except:
         #    continue
         if df.empty:
