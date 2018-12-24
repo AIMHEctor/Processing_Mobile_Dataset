@@ -1,5 +1,5 @@
 ##  Processing_Mobile_Dataset
-** Using python to process mobile data **
+**Using python to process mobile data**
 
 * Split large CSV files into small, based on time intervals
 * Build the transmission direction of the packet and integrate the "direction" and "Length" 
