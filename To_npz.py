@@ -27,22 +27,6 @@ ACK = "ack"
 WANG = "wang"
 
 
-# def bad_targets(exc_dupl=True, exc_unknown=True, exc_similar=False, exc_empty=True, exc_alm_empty=False):
-#     exclude = []
-#     if exc_dupl:
-#         for dupls in targets.duplicates:
-#             exclude += dupls[1:]
-#     if exc_unknown:
-#         exclude += targets.unknown_error
-#     if exc_similar:
-#         exclude += targets.similar
-#     if exc_empty:
-#         exclude += targets.empty
-#     if exc_alm_empty:
-#         exclude += targets.almost_empty
-#     return exclude
- 
-
 def path_txt(filepath,txtpath):
     doc=open(txtpath,'w')
     for root ,dirs, files in os.walk(filepath):
@@ -69,15 +53,6 @@ def expand(num_cells):
 
 
 def to_wang(trace, maxlen):
-    #new_trace = []
-    #for x in np.nditer(trace):
-    #    new_trace.append(expand(x))
-    #trace = np.hstack(new_trace)
-    #delete 0 in trace
-   
-    # truncate to maxlen
-  
-    # trace = trace[:maxlen]
     
     # pad to maxlen
     trace = np.pad(trace, (0, maxlen - trace.size), 'constant')
@@ -162,9 +137,7 @@ def save_data(txtname, savepath, maxlen, traces,towang=True, h5=False): #, type)
         # predata=(i for i in predata if i!=0)
         # predata=df[predata]
         #values =to_wang(df[df.columns[5]], maxlen)
-        # print(11111)
         values =to_wang(df[df.columns[5]]/60, maxlen)  
-        print(11111)
         # else:
         #     print("WRONG")
         #values = df.values
@@ -204,56 +177,8 @@ def show_npz(datapath,txtpath,xname,yname):
     #     print(i,file=doc)
     doc.close()
 
-# path_txt('E:/test_project/','C:/Users/Administrator/Desktop/dlwf_test/filepath.txt')
+path_txt(<file_path>,<path_txt>); ##input your file_path and path_txt
 save_data('ilepath.txt','data', 5000,100)
 
-#show_npz("C:/Users/Administrator/Desktop/dlwf_test/data.npz","C:/Users/Administrator/Desktop/dlwf_test/1111.txt","data","labels")
+#show_npz("npz_path","show_path","data","labels")
 
-
-# if __name__ == "__main__":
-#     #URLs = bad_targets()
-#     #print(URLs)
-#     parser = argparse.ArgumentParser(description='Save files from txt to npz dataset')
-
-#     parser.add_argument('--file', '-f',
-#                         type=str,
-#                         help='txt file with list of files')
-#     parser.add_argument('--out', '-o',
-#                         type=str,
-#                         help='output dataset name')
-#     #parser.add_argument('--type', '-t',
-#     #                    type=str,
-#     #                    default="sdae",
-#     #                    help='type of DNN: \'sdae\' or \'lstm\'')
-#     parser.a  
-# 
-# dd_argument('--maxlen', '-m',
-#                         type=int,
-#                         default=5000,
-#                         help='max amount of features')
-#     parser.add_argument('--traces', '-t',
-#                         type=int,
-#                         default=0,
-#                         help='amount of traces') 
-#     parser.add_argument('--openw', '-ow',
-#                         action="store_true",
-#                         help='open world dataset')
-
-#     args = parser.parse_args()
-
-
-
-
-# np.set_printoptions(threshold=np.inf)
-
-# npzfile=np.load("C:/Users/Administrator/Desktop/dlwf_test/data.npz")
-# x=npzfile["data"]
-# y=npzfile["labels"]
-# npzfile.close()
-# doc=open("C:/Users/Administrator/Desktop/dlwf_test/1111.txt",'w')
-
-# for i in range(0, len(x)): 
-#     print(x[i],file=doc)
-# # for i in x:
-# #     print(i,file=doc)
-# doc.close()
